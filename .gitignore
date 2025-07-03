@@ -87,9 +87,7 @@ pids
 *.pid
 *.log
 docker-compose.override.yml
-Dockerfile*
 docker-entrypoint.sh
-.dockerignore
 
 # ===================== #
 #     OS-Specific       #
