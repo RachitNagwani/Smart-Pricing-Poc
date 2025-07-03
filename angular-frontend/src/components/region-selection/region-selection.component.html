@@ -1,0 +1,19 @@
+<div class="region-selection">
+    <div class="header-bar">
+      <div class="token-info">
+        <strong>JWT Token Market:</strong> {{ jwtTokenMarket }}
+      </div>
+      <button class="logout-button" (click)="logout()">Log Out</button>
+    </div>
+  
+    <div class="market-cards">
+      <div class="market-card" *ngFor="let market of markets" (click)="selectMarket(market)">
+        {{ market.name }}
+      </div>
+    </div>
+  
+    <div class="market-message" *ngIf="message">
+      {{ message | json }}
+    </div>
+  </div>
+  
