@@ -13,8 +13,11 @@ function getRandomMarket() {
   return availableMarkets[index];
 }
 
-router.get('/', (req, res) => {
-  const randomMarket = getRandomMarket();
+router.post('/', (req, res) => {
+  
+  const user = Number(req.body.user);
+  console.log(req.body)
+  const randomMarket = availableMarkets[user-1]
 
   const payload = {
     userId: 'test-user',

@@ -1,6 +1,6 @@
 import os
 
-MARKET = os.getenv('MARKET', 'US').upper()
+MARKET = os.getenv('MARKET', 'UK').upper()
 
 def get_market_data(market=None):
     #  MARKET = (market or 'UK').upper() # used for params

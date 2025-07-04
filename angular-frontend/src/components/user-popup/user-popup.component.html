@@ -1,0 +1,9 @@
+<div class="overlay" *ngIf="users?.length">
+    <div class="popup">
+      <h2>Select User</h2>
+      <div *ngFor="let user of users" class="user-card">
+        <span>{{ user.name }}</span>
+        <button (click)="select(user)">Select</button>
+      </div>
+    </div>
+  </div>

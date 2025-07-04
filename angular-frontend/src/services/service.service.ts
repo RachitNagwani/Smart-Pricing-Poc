@@ -40,7 +40,7 @@ export class ServiceService {
     return this.http.get(this.api_url + 'api/market')
   }
 
-  getToken(){
-    return this.http.get(this.api_url + 'getToken')
+  getToken(user:any){
+    return this.http.post(this.api_url + 'getToken', {user:user})
   }
 }
