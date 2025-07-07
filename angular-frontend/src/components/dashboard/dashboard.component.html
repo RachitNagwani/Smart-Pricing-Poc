@@ -1,1 +1,28 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+    <div class="dashboard-header">
+      <h2>Welcome, {{ user?.name || 'User' }}</h2>
+      <button (click)="logout()">Log Out</button>
+    </div>
+  
+    <div class="dashboard-details">
+        <div class="card">
+            <h3>Smart Pricing Items</h3>
+            <ul>
+              <li *ngFor="let item of foodItems">
+                <strong>{{ item.name }}</strong>: {{service.currencySymbol[marketId]}}{{ item.price }}
+              </li>
+            </ul>
+          </div>
+      <!-- <div class="card">
+        <h3>User Details</h3>
+        <p><strong>Name:</strong> {{ user?.name }}</p>
+        <p><strong>Email:</strong> {{ user?.email }}</p>
+      </div> -->
+  
+      <div class="card">
+        <h3>Market Details</h3>
+        <p><strong>Selected Market:</strong> {{ market }}</p>
+      </div>
+    </div>
+  </div>
+  

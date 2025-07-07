@@ -18,6 +18,6 @@ COPY . .
 # Expose Django default port
 EXPOSE 8000
 
-# 🟡 Don't run manage.py during build — it needs env vars
+# 🟡 Don't run run manage.py during build — it needs env vars
 # 🟢 Start the Django server at container runtime instead
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

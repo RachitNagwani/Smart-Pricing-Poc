@@ -19,3 +19,17 @@ def user_view(request):
         "role": "admin"
     }
     return JsonResponse(user_data)
+
+def item_view(request):
+    # User details
+    user_data = [
+        {
+            'name': 'Paneer Tikka Pizza',
+            'price': 3  # could be dynamically adjusted based on market
+        },
+        {
+            'name': 'Veggie Delight Burger',
+            'price': 7
+        }
+    ]
+    return JsonResponse(user_data, safe=False)

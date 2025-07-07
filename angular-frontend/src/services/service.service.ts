@@ -13,7 +13,11 @@ export class ServiceService {
   token: any;
   constructor( private http: HttpClient, private msalService: MsalService,) { }
 
-
+  currencySymbol:any ={
+    1:'₹',
+    2:'$',
+    3: '£'
+  }
 
   getMarkets(){
     return this.http.get(this.api_url + 'markets')
@@ -40,7 +44,15 @@ export class ServiceService {
     return this.http.get(this.api_url + 'api/market')
   }
 
+  verifyToken(){
+    return this.http.get(this.api_url + 'api')
+  }
+
   getToken(user:any){
     return this.http.post(this.api_url + 'getToken', {user:user})
+  }
+
+  getItemDetail(){
+    return this.http.get(this.api_url + 'api/item')
   }
 }

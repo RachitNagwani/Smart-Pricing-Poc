@@ -17,8 +17,9 @@ export class AuthInterceptor implements HttpInterceptor {
   ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const market = this.service.market?.name;
-    const token = this.service.token;
+    const market = localStorage.getItem('market');
+    const marketName = market ? JSON.parse(market)?.name : null;
+    const token = localStorage.getItem('token');
 
     // Optional: Only intercept if MSAL has a user signed in
     // const account = this.msalService.instance.getActiveAccount();
@@ -31,7 +32,7 @@ export class AuthInterceptor implements HttpInterceptor {
       const cloned = req.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`,
-          'x-market': market || ''
+          'x-market': marketName || ''
         }
       });
       return next.handle(cloned);

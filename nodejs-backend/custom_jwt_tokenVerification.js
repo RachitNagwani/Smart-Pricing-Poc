@@ -17,6 +17,9 @@ function customverifyTokenAndMarket(req, res, next) {
     }
 
     const marketInToken = decoded.market;
+    console.log(selectedMarket)
+    console.log(marketInToken)
+    console.log(!selectedMarket || !marketInToken || selectedMarket !== marketInToken)
     if (!selectedMarket || !marketInToken || selectedMarket !== marketInToken) {
       return res.status(403).json({ error: 'Market mismatch' });
     }

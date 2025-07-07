@@ -43,7 +43,7 @@ app.use('/api', async (req, res) => {
       _forwardedTo: `${targetUrl}`  
     };
 
-    res.status(response.status).json(responseData);
+    res.status(response.status).json(response.data);
   } catch (err) {
     console.error('❌ Error forwarding to backend:', err.message);
     res.status(err.response?.status || 500).json({ error: `➡️ Forwarding request to ${targetUrl}` });

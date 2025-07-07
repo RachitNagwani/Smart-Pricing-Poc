@@ -1,0 +1,49 @@
+.dashboard-container {
+    padding: 30px;
+    max-width: 800px;
+    margin: auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  
+    h2 {
+      margin: 0;
+    }
+  
+    button {
+      background-color: #6610f2;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  
+    button:hover {
+      background-color: #4e0fc2;
+    }
+  }
+  
+  .dashboard-details {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  
+    .card {
+      background-color: #f5f5f5;
+      padding: 20px;
+      flex: 1 1 45%;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  
+      h3 {
+        margin-top: 0;
+      }
+    }
+  }
+  
