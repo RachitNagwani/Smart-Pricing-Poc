@@ -1,12 +1,22 @@
 from pathlib import Path
 from decouple import config, Csv
+from dotenv import load_dotenv
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Load sensitive values from .env
+# Load the single .env file
+load_dotenv(BASE_DIR / '.env')
+
+# Read MARKET and DB config from environment variables
+MARKET = os.getenv('MARKET', 'UK').upper()
+
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
+
+# Store MARKET as a Django setting if needed elsewhere
+DJANGO_MARKET = MARKET
 
 # Application definition
 INSTALLED_APPS = [
@@ -49,12 +59,18 @@ TEMPLATES = [
 WSGI_APPLICATION = 'market_poc.wsgi.application'
 
 # Default database: SQLite
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
     }
 }
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -71,6 +87,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# DATABASE_ROUTERS = ['db_router.MarketRouter']
 
 # Localization settings
 LANGUAGE_CODE = 'en-us'

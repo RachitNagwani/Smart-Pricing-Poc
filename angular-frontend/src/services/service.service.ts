@@ -19,6 +19,19 @@ export class ServiceService {
     3: '£'
   }
 
+  getCurrencySymbol(currency: string): string {
+    switch (currency.toLowerCase()) {
+      case 'rupees':
+        return '₹';
+      case 'euro':
+        return '€';
+      case 'dollar':
+        return '$';
+      default:
+       return '€'; 
+  }
+}
+
   getMarkets(){
     return this.http.get(this.api_url + 'markets')
   }

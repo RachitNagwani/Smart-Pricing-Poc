@@ -9,7 +9,7 @@
             <h3>Smart Pricing Items</h3>
             <ul>
               <li *ngFor="let item of foodItems">
-                <strong>{{ item.name }}</strong>: {{service.currencySymbol[marketId]}}{{ item.price }}
+                <strong>{{ item.name }}</strong>: {{service.getCurrencySymbol(item.currency)}}{{ item.price }}
               </li>
             </ul>
           </div>
