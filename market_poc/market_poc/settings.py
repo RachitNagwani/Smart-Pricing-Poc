@@ -64,12 +64,17 @@ try:
     DB_NAME = config('DB_NAME')
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.mysql',
+            'ENGINE': 'mssql',
             'NAME': DB_NAME,
             'USER': config('DB_USER'),
             'PASSWORD': config('DB_PASSWORD'),
             'HOST': config('DB_HOST', '127.0.0.1'),
             'PORT': config('DB_PORT', '3306'),
+            'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',
+            'encrypt': True,
+            'trustServerCertificate': False,
+        },
         }
     }
 except :
