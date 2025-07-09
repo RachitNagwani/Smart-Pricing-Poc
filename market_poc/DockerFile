@@ -4,16 +4,30 @@ FROM python:3.11-slim
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
+ENV DEBIAN_FRONTEND=noninteractive
+ENV ACCEPT_EULA=Y
+
 
 # Set working directory
 WORKDIR /app
 
+# Install system dependencies (incl. ODBC tools and dependencies)
 RUN apt-get update && apt-get install -y \
-    curl gnupg apt-transport-https && \
-    curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
-    curl https://packages.microsoft.com/config/debian/11/prod.list > /etc/apt/sources.list.d/mssql-release.list && \
-    apt-get update && ACCEPT_EULA=Y apt-get install -y msodbcsql17 unixodbc-dev && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+    unixodbc \
+    unixodbc-dev \
+    gcc \
+    g++ \
+    curl \
+    gnupg2 \
+    libgssapi-krb5-2 \
+    && apt-get clean
+
+# Copy msodbcsql17 driver package
+COPY msodbcsql17_*.deb /tmp/
+
+# Install the local .deb package
+RUN apt install -y /tmp/msodbcsql17_*.deb \
+    && rm -f /tmp/msodbcsql17_*.deb
 
 # Install dependencies
 COPY requirements.txt .
