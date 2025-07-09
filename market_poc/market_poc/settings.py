@@ -13,7 +13,7 @@ MARKET = os.getenv('MARKET', 'UK').upper()
 
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='*', cast=Csv())
 
 # Store MARKET as a Django setting if needed elsewhere
 DJANGO_MARKET = MARKET
