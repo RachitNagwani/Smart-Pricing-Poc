@@ -33,7 +33,7 @@ export class ServiceService {
 }
 
   getMarkets(){
-    return this.http.get(this.api_url + 'markets')
+    return this.http.get(this.api_url + 'api/market')
   }
 
   setAccount(){

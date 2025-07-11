@@ -8,7 +8,8 @@ def market_view(request):
     Return the current MARKET environment variable
     """
     market = os.getenv('MARKET', 'UK').upper()
-    return JsonResponse({"market": market})
+    markets = [{'id': 1, 'name': 'India'}, {'id': 2, 'name': 'UAE'}, {'id': 3, 'name': 'UK'}]
+    return JsonResponse({"market": markets})
 
 
 @csrf_exempt
