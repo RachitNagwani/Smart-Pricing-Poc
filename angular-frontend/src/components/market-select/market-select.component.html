@@ -1,0 +1,27 @@
+<div class="login-container">
+    <button class="logout-button" (click)="onLogout()">Logout</button>
+  
+    <div class="login-box">
+      <img
+        src="https://aadcdn.msauthimages.net/c1c6b6c8-quchdox4alzms566-zac4cbcthjnsmocvajdsiieufs/logintenantbranding/0/bannerlogo?ts=637426159367299183"
+        alt="Microsoft Logo"
+        class="logo"
+      />
+  
+      <h2>Select Market</h2>
+  
+      <form (ngSubmit)="onSubmit()" #marketForm="ngForm">
+        <select
+          name="market"
+          [(ngModel)]="selectedMarket"
+          required
+        >
+          <option value="" disabled selected>Select a Market</option>
+          <option *ngFor="let market of markets" [value]="market">{{ market }}</option>
+        </select>
+  
+        <button type="submit" [disabled]="!marketForm.valid">Continue</button>
+      </form>
+    </div>
+  </div>
+  

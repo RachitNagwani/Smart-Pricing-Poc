@@ -3,6 +3,7 @@ import { environment } from '../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { environment as ENV } from './../environments/environment';
 import { MsalService } from '@azure/msal-angular';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ServiceService {
   market: any;
   api_url = `${ENV.API_ENDPOINT}`;
   token: any;
-  constructor( private http: HttpClient, private msalService: MsalService,) { }
+  constructor( private http: HttpClient, private msalService: MsalService, private router : Router) { }
 
   currencySymbol:any ={
     1:'₹',
@@ -67,5 +68,30 @@ export class ServiceService {
 
   getItemDetail(){
     return this.http.get(this.api_url + 'api/item')
+  }
+
+  logout(){
+    localStorage.clear(); // or sessionStorage.clear() if you use that
+    this.router.navigate(['/']); // navigate to login or home
+  }
+
+  getScenario(){
+    return this.http.get(this.api_url + 'api/scenarios')
+  }
+
+  deleteScenario(body:any){
+    return this.http.post(this.api_url + 'api/delete_scenario', body)
+  }
+
+  createScenario(body:any){
+    return this.http.post(this.api_url + 'api/create_scenario', body)
+  }
+
+  getScenarioDetails(body:any){
+    return this.http.post(this.api_url + 'api/get_scenario', body)
+  }
+
+  updateScenario(body:any){
+    return this.http.post(this.api_url + 'api/update_scenario', body)
   }
 }

@@ -21,10 +21,7 @@ export class DashboardComponent {
   ngOnInit() {
     this.user = {name:'Rachit', email:'rachit@gmail.com'}
     const market = localStorage.getItem('market');
-    const marketName = market ? JSON.parse(market)?.name : null;
-    const marketId = market ? JSON.parse(market)?.id : null;
-    this.market = marketName;
-    this.marketId = marketId;
+    this.market = market;
     this.getItemDetails();
   }
 

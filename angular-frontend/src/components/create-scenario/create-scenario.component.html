@@ -1,0 +1,51 @@
+<div class="page-container">
+    <button class="logout-button" (click)="onLogout()">Logout</button>
+  
+    <div class="content-box">
+  
+      <form (ngSubmit)="onCreate()" #scenarioForm="ngForm">
+        <div class="form-group">
+          <label for="name">Scenario Name</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            [(ngModel)]="scenario.name"
+            required
+          />
+        </div>
+  
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea
+            id="description"
+            name="description"
+            [(ngModel)]="scenario.description"
+            rows="3"
+            required
+          ></textarea>
+        </div>
+  
+        <div class="form-group">
+          <label for="type">Type</label>
+          <select
+            id="type"
+            name="type"
+            [(ngModel)]="scenario.type"
+            required
+          >
+            <option value="" disabled selected>Select a Type</option>
+            <option *ngFor="let option of scenarioTypes" [value]="option">{{ option }}</option>
+          </select>
+        </div>
+  
+        <button *ngIf="!scenario_id" type="submit" class="submit-button" [disabled]="!scenarioForm.valid">
+          Create Scenario
+        </button>
+        <button *ngIf="scenario_id" type="submit" class="submit-button" [disabled]="!scenarioForm.valid">
+            Update Scenario
+          </button>
+      </form>
+    </div>
+  </div>
+  

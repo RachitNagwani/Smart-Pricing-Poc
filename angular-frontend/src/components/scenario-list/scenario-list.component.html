@@ -1,0 +1,41 @@
+<div class="page-container">
+    <button class="logout-button" (click)="onLogout()">Logout</button>
+  
+    <div class="content-box">
+      <div class="header-row">
+        <h2>Scenarios</h2>
+        <button class="create-button" (click)="onCreate()">Create Scenario</button>
+      </div>
+  
+      <table class="scenario-table">
+        <thead>
+          <tr>
+            <th>Scenario ID</th>
+            <th>Scenario Name</th>
+            <th>Description</th>
+            <th>Market</th>
+            <th>Created By</th>
+            <th>Created At</th>
+            <th>Type</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let scenario of scenarios">
+            <td>{{ scenario.scenario_id }}</td>
+            <td>{{ scenario.name }}</td>
+            <td>{{ scenario.description }}</td>
+            <td>{{scenario.market | uppercase}}</td>
+            <td>{{ scenario.created_by }}</td>
+            <td>{{ scenario.created_at | date }}</td>
+            <td>{{ scenario.type }}</td>
+            <td class="action">
+                <div role="button" class="edit" (click)="edit(scenario.scenario_id)"></div>
+                <div role="button" class="delete" (click)="delete(scenario.scenario_id)"></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

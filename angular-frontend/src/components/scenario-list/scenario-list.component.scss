@@ -1,0 +1,95 @@
+.page-container {
+    position: relative;
+    min-height: 100vh;
+    background: url('/assets/background.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 30px;
+  }
+  
+  .logout-button {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background-color: red;
+    color: white;
+    border: 1px solid white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .logout-button:hover {
+    background-color: black;
+    color: #0078d4;
+  }
+  
+  .content-box {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 20px 30px;
+    border-radius: 6px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    max-width: 1000px;
+    margin: 60px auto 0;
+  }
+  
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .create-button {
+    background-color: #0078d4;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  .create-button:hover {
+    background-color: #005ea2;
+  }
+  
+  .scenario-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+  }
+  
+  .scenario-table th,
+  .scenario-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+  }
+  
+  .scenario-table th {
+    background-color: #f2f2f2;
+    font-weight: 600;
+  }
+
+  .edit {
+    width: 20px;
+    height: 20px;
+    background: url('./../../assets/edit.svg') no-repeat center center;
+  }
+
+  .delete {
+    width: 20px;
+    height: 20px;
+    background: url('./../../assets/trash.png') no-repeat center center;
+  }
+
+  .action{
+    display: flex;
+    gap: 5px;
+    cursor: pointer;
+  }
+  

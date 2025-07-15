@@ -67,15 +67,15 @@ export class RegionSelectionComponent implements OnInit {
 
   availableMarkets = ['India', 'USA', 'UK'];
   
-  getMarketByUser(user: number): string {
-    return this.availableMarkets[user - 1] || 'India'; // default fallback
+  getMarketByUser(user: any): string {
+    return this.availableMarkets[user.id - 1] || 'India'; // default fallback
   }
   
-  generateToken(user: number): { token: string, assignedMarket: string } {
+  generateToken(user: any): { token: string, assignedMarket: string } {
     const market = this.getMarketByUser(user);
   
     const payload = {
-      userId: 'test-user',
+      userId: user.name,
       market: market,
       iss: 'your-node-middleware',
       exp: Math.floor(Date.now() / 1000) + 60 * 60 // expires in 1 hour
@@ -105,7 +105,7 @@ export class RegionSelectionComponent implements OnInit {
 
   onUserSelected(user: any) {
     console.log('User selected:', user);
-    this.selecteduser = user.id
+    this.selecteduser = user
     this.showPopup = false;
     if(!this.service.token) this.getToken();
     else this.getUser()

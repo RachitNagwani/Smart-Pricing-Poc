@@ -1,0 +1,78 @@
+.login-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('./../../assets/Costa-Hero-Area-Background-Image.png') no-repeat center center;
+    background-size: cover;
+    padding: 20px;
+  }
+  
+  .logout-button {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background-color: red;
+    color: white;
+    border: 1px solid white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+    width: fit-content;
+  }
+  
+  .logout-button:hover {
+    background-color: white;
+    color: #0078d4;
+  }
+  
+  .login-box {
+    backdrop-filter: blur(10px);
+    background-color: white;
+    padding: 40px 30px;
+    border-radius: 6px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .logo {
+    height: 24px;
+    width: 120px;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #1b1b1b;
+  }
+  
+  select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+  }
+  
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #0078d4;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background-color: #a0c4e8;
+    cursor: not-allowed;
+  }
+  

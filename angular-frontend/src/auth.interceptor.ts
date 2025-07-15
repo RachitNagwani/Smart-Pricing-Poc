@@ -18,14 +18,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const market = localStorage.getItem('market');
-    const marketName = market ? JSON.parse(market)?.name : null;
+    const marketName = market;
     const token = localStorage.getItem('token');
-
-    // Optional: Only intercept if MSAL has a user signed in
-    // const account = this.msalService.instance.getActiveAccount();
-    // if (!account) {
-    //   return next.handle(req);
-    // }
 
     // If we have a valid token, clone request with headers
     if (token) {
