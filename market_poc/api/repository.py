@@ -16,31 +16,43 @@ class ScenarioRepository:
             db_connection.close()
         return scenario_df
     
-    def create_scenario(name, description, type, market):
+    def create_scenario(name, description, type, market, user):
         try:
             Session = sessionmaker(bind=get_db_connection())
             session = Session()
             now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            create_mapping_query = text(create_scenario_query(name, description, type, now, market))
-            session.execute(create_mapping_query)
+            query, params = create_scenario_query(name, description, type, now, market, user)
+            session.execute(text(query), params)
+            session.commit()
+        except Exception as e:
+            print(e)
+            return False
+        return True
+    
+    def update_scenario(scenario_id, name, description, type, market, user):
+        try:
+            Session = sessionmaker(bind=get_db_connection())
+            session = Session()
+            now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            query, params = update_scenario_query(scenario_id, name, description, type, market, user, now)
+            session.execute(text(query), params)
+            session.commit()
+        except Exception as e:
+            print(e)
+            return False
+        return True
+    
+    def delete_scenario(scenario_id, market, user):
+        try:
+            Session = sessionmaker(bind=get_db_connection())
+            session = Session()
+            now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            query, params = delete_scenario_query(scenario_id, market, user, now)
+            session.execute(text(query), params)
             session.commit()
         except Exception as e:
             return False
         return True
-    
-    def update_scenario(scenario_id, name, market):
-        Session = sessionmaker(bind=get_db_connection())
-        session = Session()
-        create_mapping_query = text(update_scenario_query(scenario_id, name, market))
-        session.execute(create_mapping_query)
-        session.commit()
-    
-    def delete_scenario(scenario_id, market):
-        Session = sessionmaker(bind=get_db_connection())
-        session = Session()
-        create_mapping_query = text(delete_scenario_query(scenario_id, market))
-        session.execute(create_mapping_query)
-        session.commit()
 
     def get_scenario(scenario_id, market):
         try:

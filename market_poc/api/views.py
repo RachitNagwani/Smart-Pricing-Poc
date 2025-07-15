@@ -45,46 +45,48 @@ def item_view(request):
 
 @api_view(['GET'])
 def get_scenarios(request):
-    market = request.user_data.get("market").lower()
+    market = request.user_data.get("market")
     scenarios = ScenarioService.get_scenarios(market)
     return Response(scenarios,status=status.HTTP_200_OK)
 
 @api_view(['POST'])
 def create_scenario(request):
-    market = request.user_data.get("market").lower()
+    market = request.user_data.get("market")
     name = request.data.get("name")
     description = request.data.get("description")
     type = request.data.get("type")
-    user = request.data.get("user")
+    user = request.user_data.get("user")
     
-    scenarios = ScenarioService.create_scenario(name, description, type, market)
+    scenarios = ScenarioService.create_scenario(name, description, type, market, user)
 
     return Response(scenarios,status=status.HTTP_200_OK)
 
 @api_view(['POST'])
 def update_scenario(request):
-    market = request.user_data.get("market").lower()
+    market = request.user_data.get("market")
     scenario_id = request.data.get("scenario_id")
     name = request.data.get("name")
-    user = request.data.get("user")
+    description = request.data.get("description")
+    type = request.data.get("type")
+    user = request.user_data.get("user")
     
-    scenarios = ScenarioService.update_scenario(scenario_id, name, market)
+    scenarios = ScenarioService.update_scenario(scenario_id, name, description, type, market, user)
 
     return Response(scenarios,status=status.HTTP_200_OK)
 
 @api_view(['POST'])
 def delete_scenario(request):
-    market = request.user_data.get("market").lower()
+    market = request.user_data.get("market")
     scenario_id = request.data.get("scenario_id")
-    user = request.data.get("user")
+    user = request.user_data.get("user")
     
-    scenarios = ScenarioService.delete_scenario(scenario_id, market)
+    scenarios = ScenarioService.delete_scenario(scenario_id, market, user)
 
     return Response(scenarios,status=status.HTTP_200_OK)
 
 @api_view(['POST'])
 def get_scenario(request):
-    market = request.user_data.get("market").lower()
+    market = request.user_data.get("market")
     scenario_id = request.data.get("scenario_id")
     
     scenario = ScenarioService.get_scenario(scenario_id, market)

@@ -4,7 +4,7 @@ from django.utils.deprecation import MiddlewareMixin
 class DecodeJWTMiddleware(MiddlewareMixin):
     def process_request(self, request):
         auth_header = request.META.get('HTTP_AUTHORIZATION', '')
-        market = request.META.get('x-market', '')
+        market = request.META.get('HTTP_X_MARKET', '').lower()
         if auth_header.startswith('Bearer '):
             token = auth_header.split(' ')[1]
             try:
