@@ -31,6 +31,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'api.custom_middleware.DecodeJWTMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -60,26 +61,41 @@ WSGI_APPLICATION = 'market_poc.wsgi.application'
 
 # Default database: SQLite
 
-try:
-    DB_NAME = config('DB_NAME')
-    DATABASES = {
-        'default': {
-            'ENGINE': 'mssql',
-            'NAME': DB_NAME,
-            'USER': config('DB_USER'),
-            'PASSWORD': config('DB_PASSWORD'),
-            'HOST': config('DB_HOST', '127.0.0.1'),
-            'PORT': config('DB_PORT', '3306'),
-            'OPTIONS': {
-            'driver': 'ODBC Driver 17 for SQL Server',
-            'encrypt': True,
-            'trustServerCertificate': False,
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'mssql',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
+        'OPTIONS': {
+            'Driver': 'ODBC Driver 17 for SQL Server',
         },
-        }
-    }
-except :
-    print("⚠️ Missing DB environment variables. Skipping DB setup.")
-    DATABASES = {}
+    },
+}
+
+# try:
+#     DB_NAME = config('DB_NAME')
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'mssql',
+#             'NAME': DB_NAME,
+#             'USER': config('DB_USER'),
+#             'PASSWORD': config('DB_PASSWORD'),
+#             'HOST': config('DB_HOST', '127.0.0.1'),
+#             'PORT': config('DB_PORT', '3306'),
+#             'OPTIONS': {
+#             'driver': 'ODBC Driver 17 for SQL Server',
+#             'encrypt': True,
+#             'trustServerCertificate': False,
+#         },
+#         }
+#     }
+# except :
+#     print("⚠️ Missing DB environment variables. Skipping DB setup.")
+#     DATABASES = {}
 
 
 # Password validation
