@@ -3,6 +3,7 @@ from api.repository import ScenarioRepository
 class ScenarioService:
     def get_scenarios(market):
         scenario_list = ScenarioRepository.get_scenarios(market)
+        scenario_list['market'] = market
         response = scenario_list.to_dict("records")
         return response
     
@@ -29,5 +30,6 @@ class ScenarioService:
 
     def get_scenario(scenario_id, market):
         scenario = ScenarioRepository.get_scenario(scenario_id, market)
+        scenario['market'] = market
         response = scenario.to_dict("records")
         return response
