@@ -30,6 +30,16 @@ export class LoginScreenComponent {
   getMarketByUser() {
     // return this.availableMarkets[Math.floor(Math.random() * this.availableMarkets.length)]
 
+    if (this.email == 'rachit.nagwani@costacoffee.com') {
+      return [this.availableMarkets[0]]
+    }
+    if (this.email == 'gautam.paul@costacoffee.com') {
+      return [this.availableMarkets[1]]
+    }
+    if (this.email == 'harish.arumugam@costacoffee.com') {
+      return this.availableMarkets
+    }
+
     const shuffled = [...this.availableMarkets].sort(() => 0.5 - Math.random());
     const randomCount = Math.floor(Math.random() * this.availableMarkets.length) + 1;
     return shuffled.slice(0, randomCount);
