@@ -62,3 +62,14 @@ def get_scenario_query(scenario_id, market):
                     SELECT * FROM {market}.scenario_master WHERE scenario_id=?;"""
     params = [scenario_id]
     return query_string, tuple(params)
+
+def get_menu_query(market):
+    query_string = f"""
+                    SELECT * FROM {market}.navigation WHERE is_active=1;"""
+    return query_string, tuple()
+
+def get_scenario_details_query():
+    query_string = f"""
+                SELECT * FROM scenario_details;
+            """
+    return query_string, tuple()

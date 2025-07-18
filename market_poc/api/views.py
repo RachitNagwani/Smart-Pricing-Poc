@@ -92,3 +92,16 @@ def get_scenario(request):
     scenario = ScenarioService.get_scenario(scenario_id, market)
 
     return Response(scenario,status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def get_menu(request):
+    market = request.user_data.get("market")
+    menu = ScenarioService.get_menu(market)
+    return Response(menu, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
+def get_scenario_details(request):
+    scenario_details = ScenarioService.get_scenario_details()
+    return Response(scenario_details, status=status.HTTP_200_OK)

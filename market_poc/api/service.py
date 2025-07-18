@@ -33,3 +33,13 @@ class ScenarioService:
         scenario['market'] = market
         response = scenario.to_dict("records")
         return response
+    
+    def get_menu(market):
+        menu = ScenarioRepository.get_menu(market)
+        response = menu.to_dict("records")
+        return response
+    
+    def get_scenario_details():
+        scenario_details = ScenarioRepository.get_scenario_details()
+        response = scenario_details.to_dict("records")
+        return response

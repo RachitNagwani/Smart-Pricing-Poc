@@ -1,6 +1,6 @@
 import pandas as pd
 from api.db_connection import get_db_connection
-from api.query import get_scenarios_query, create_scenario_query, update_scenario_query, delete_scenario_query, get_scenario_query
+from api.query import get_scenarios_query, create_scenario_query, update_scenario_query, delete_scenario_query, get_scenario_query, get_menu_query, get_scenario_details_query
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import text
 from datetime import datetime
@@ -62,3 +62,22 @@ class ScenarioRepository:
         finally:
             db_connection.close()
         return scenario_df
+    
+    def get_menu(market):
+        try:
+            db_connection = get_db_connection()
+            query, params = get_menu_query(market)
+            menu_df = pd.read_sql(query,db_connection, params=params)
+        finally:
+            db_connection.close()
+        return menu_df
+
+    
+    def get_scenario_details():
+        try:
+            db_connection = get_db_connection()
+            query, params = get_scenario_details_query()
+            scenario_details_df = pd.read_sql(query,db_connection, params=params)
+        finally:
+            db_connection.close()
+        return scenario_details_df
