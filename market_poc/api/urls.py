@@ -10,4 +10,5 @@ urlpatterns = [
     path("update_scenario",update_scenario),
     path("delete_scenario", delete_scenario),
     path("get_scenario", get_scenario)
+    
 ]
